@@ -1,0 +1,10 @@
+header.header
+    h1 IPU Results
+    .row
+        .col-lg-4.col-md-4.col-sm-8.col-xs-12.mx-auto.mt-5
+            input.form-control(type='text',placeholder='Enrollment No',class=`form-control-${req.originalUrl.startsWith("/")?'sm':'md'}`,value=`${result?result.EnrollmentNumber:''}`)
+    .row
+        .col-lg-4.col-md-12.col-sm-12.mx-auto.mt-4
+            button.btn.btn-primary.btn-md.submit-roll
+                |Search
+    

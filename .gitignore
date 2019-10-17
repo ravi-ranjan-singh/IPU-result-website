@@ -1,0 +1,4 @@
+node_modules/
+config.env
+public/base_temp.html
+public/result_temp.html

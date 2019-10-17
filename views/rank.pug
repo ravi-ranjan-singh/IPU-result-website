@@ -1,0 +1,31 @@
+extends base
+
+block content
+    main.main.mt-2
+        .row.result-table
+            .col-lg-10.mx-auto.mt-5
+                table.table.table-sm
+                    thead.thead-light
+                        tr
+                            th(scope='col') 
+                            th(scope='col') Name
+                            th(scope='col') Roll No
+                            th(scope='col') Aggregate
+                    tbody
+                        each result,i in Results
+                            -const arr = ['danger','warning','primary']
+                            tr(class=`table-${20*(page-1)+(i+1)<4?arr[i]:' '} ${20*(page-1)+(i+1)<4?"text-dark":'text-light'}`)
+                                th(scope="row")=`${20*(page-1)+(i+1)}`
+                                td=result.Name
+                                td=result.EnrollmentNumber
+                                td=result.aggregatePercentage
+        .row.pages
+            .col-lg-10.mx-auto.mt-2
+                nav(aria-label="...")
+                    ul.pagination
+                        li.page-item
+                            a.page-link.previous-page( href=`${url}${page-1==0?1:page-1}`) Previous
+                        li.page-item.active(aria-current="page")
+                            span.page-link.current=page
+                        li.page-item
+                            a.page-link.next-page(href=`${url}${Results.length>0?page+1:page}`) Next

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/error.css")
+        title Something Went wrong
+    body
+        div.container
+            div.row
+                div.xs-12.md-6.mx-auto
+                    div#countUp
+                        div.number(data-count='404')= error.statusCode
+                        div.text= error.message
+                        -if(error.statusCode!==404)
+                            div.text This may not mean anything.
+                            div.text I'm probably working on something that has blown up.
+        script(src="/master.js")
+        
+
+
+          
+            

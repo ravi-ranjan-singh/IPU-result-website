@@ -1,0 +1,42 @@
+extends base
+
+block content    
+    main.main.mt-2
+        .row
+            .col-lg-12.student-name.text-center.mb-2
+                |#{results[0].Name}
+       
+        .row
+            .col-lg-12.student-name.text-center.mb-2.mt-5
+                -let totalPerc = 0
+                -results.forEach( el=>totalPerc=totalPerc+el.aggregatePercentage)
+                h3.aggregate=`Overall Aggregate Percentage : ${totalPerc/results.length}%`
+        .row.result-table
+            .col-lg-10.mx-auto.mt-4
+                table.table.table-sm
+                    thead.thead-light
+                        tr
+                            th(scope='col') Sem
+                            th(scope='col') Marks
+                            th(scope='col') Percentage
+                            th(scope='col') Credits
+                    tbody
+                        each result,i in results
+                            tr
+                                th(scope="row")=`${parseInt(result.Semester)}`
+                                td=`${result.totalMarksObtained}/${result.totalMarks}`
+                                td=result.aggregatePercentage
+                                td=result.CreditsSecured
+                        tr
+                                th(scope="row")=` `
+                                -let total = 0
+                                -sum = 0
+                                -results.forEach( el=>sum=sum+el.totalMarksObtained)
+                                -results.forEach( el=>total=total+el.totalMarks)
+                                td=`${sum}/${total}`
+                                td=totalPerc/results.length
+                                -let totalCredits = 0
+                                -results.forEach( el=>totalCredits=totalCredits+parseInt( el.CreditsSecured))
+                                td=totalCredits
+
+

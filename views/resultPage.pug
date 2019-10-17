@@ -1,0 +1,44 @@
+extends base
+block content    
+    main.main.mt-2
+        .row
+            .col-lg-12.student-name.text-center.mb-2
+                |#{result.Name}
+        .row.mt-2
+            .col-lg-3.col-md-2.col-sm-2.data-options
+                form.form-inline
+                    select.form-control.form-control-sm(id="semester-select")
+                        each sem in semesters
+                            option.text-dark=`Semester ${sem+1}`
+                    a.btn.btn-primary.btn-md.overall-perc.mx-auto(href=`/${result.EnrollmentNumber}/overall`) Overall
+        .row
+            .col-lg-12.student-name.text-center.mb-2.mt-5
+                h3.aggregate=`Aggregate Percentage : ${result.aggregatePercentage}%`
+        .row.result-table
+            .col-lg-10.mx-auto.mt-4
+                table.table.table-sm
+                    thead.thead-light
+                        tr
+                            th(scope='col') 
+                            th(scope='col') Subject
+                            th(scope='col') Internal
+                            th(scope='col') External
+                            th(scope='col') Total
+                    tbody
+                        each subject,i in result.Marks
+                            tr
+                                th(scope="row")=`${i+1}`
+                                td=subject.Name
+                                td=subject.Internal
+                                td=subject.External
+                                td=subject.Total
+        .row
+            .col-lg-3.mx-auto.mt-5
+                a.btn.btn-primary.btn-md.submit-roll(href=`/college/${result.Institution}/${(/\(([^)]+)\)/.exec(result.Programme))[1]}/${parseInt(result.Semester)}/1`)
+                    |College Rank
+                a.btn.btn-primary.btn-md.ml-5.submit-roll(href=`/university/${(/\(([^)]+)\)/.exec(result.Programme))[1]}/${parseInt(result.Semester)}/1`)
+                    |University Rank
+
+                       
+                        
+    
