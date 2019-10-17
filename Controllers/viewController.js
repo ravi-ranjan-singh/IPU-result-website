@@ -10,6 +10,9 @@ exports.getOverall = catchAsync(async (req, res, next) => {
   const results = await Result.find({
     EnrollmentNumber: req.params.rollNo
   });
+  results.sort(function(a, b) {
+    return parseInt(a.Semester) - parseInt(b.Semester);
+  });
   res.status(200).render("overall", { results });
 });
 
