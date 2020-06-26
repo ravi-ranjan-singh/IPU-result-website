@@ -9,12 +9,12 @@ process.on("uncaughtException", err => {
   process.exit(1);
 });
 
-const DATABASE_LOCAL = " mongodb://localhost:27017/Result";
+// const DATABASE_LOCAL = " mongodb://localhost:27017/Result";
 
 const app = require("./app");
 
 mongoose
-  .connect(DATABASE_LOCAL, {
+  .connect(process.env.DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
